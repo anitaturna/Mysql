@@ -9,7 +9,7 @@ $database = mysqli_connect("localhost","root", "",  "company");
 if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $address = $_POST['address'];
-
+    
     $database->query("CALL add_manufc_data('$name', '$address')");
 }
 
