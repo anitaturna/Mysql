@@ -29,6 +29,7 @@ if(isset($_GET['delete_data'])){
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +60,7 @@ if(isset($_GET['delete_data'])){
                             <td>$name</td>
                             <td>$contact</td>
                             <td>
+                            <a href='edit.php?update_data=$_id' class='btn btn-dark'>UPDATE</a>
                             <a href='view.php?delete_data=$_id' class='btn btn-danger'>DELETE</a>
                          </td>
                         </tr>";
