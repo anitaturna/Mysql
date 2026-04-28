@@ -1,33 +1,36 @@
 <?php
-$database = mysqli_connect("localhost", "root", "", "batch-70");
-
-if (!$database) {
-    die("Connection failed: " . mysqli_connect_error());
+$database = mysqli_connect("localhost","root","","student-info");
+if(!$database){
+    die("connection falied: ".mysqli_connect_error());
 }
 
-if (isset($_POST['submit'])) {
+if(isset($_POST['submit'])){
     $name = $_POST['name'];
+    $email = $_POST['email'];
     $contact = $_POST['contact'];
-    
-    // টেবিল নামে হাইফেন থাকলে ব্যাকটিক (`) ব্যবহার করা জরুরি
-    $q = "INSERT INTO `batch-70` (name, cntact) VALUES ('$name', '$contact')";
-    
-    if (mysqli_query($database, $q)) {
-        header("Location: view.php"); // সঠিক রিডাইরেকশন
-        exit(); 
-    } else {
-        echo "Data Isn't Inserted: " . mysqli_error($database);
+    $address = $_POST['address'];
+
+    $query_table = "INSERT INTO student-info (name,email,contact,address)VALUES('$name','$email','$contact','$address')";
+
+    if(mysqli_query($database,$query_table)){
+        header("location:view.php");
+        exit();
+    }
+    else{
+        echo "data isn't inserted";
+        mysqli_error($database);
     }
 }
 
+
 //delete check
 if(isset($_GET['delete_data'])){
-    $dltid =$_GET['delete_data'];
-    $database->query("DELETE FROM morning_btch where id='$dltid'");
+     $dltid =$_GET['delete_data'];
+    $database->query("DELETE FROM student where id='$dltid'");
     header("location:view.php");
-
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -46,19 +49,21 @@ if(isset($_GET['delete_data'])){
                     <tr> 
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Email</th>
                         <th>Contact</th>
+                        <th>Address</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                    // এখানেও সঠিক টেবিল নাম (batch-70) ব্যবহার করা হয়েছে
-                    $data = $database->query("SELECT * FROM morning_btch ");
-                    while(list($_id, $name, $contact) = $data->fetch_row()){
+                    // এখানেও সঠিক টেবিল নাম (student) ব্যবহার করা হয়েছে
+                    $data = $database->query("SELECT * FROM student ");
+                    while(list($_id, $name,$email, $contact,$address) = $data->fetch_row()){
                         echo "<tr>
                             <td>$_id</td>
-                            <td>$name</td>
-                            <td>$contact</td>
+                            <td>$name</td><td>$email</td>
+                            <td>$contact</td><td>$address</td>
                             <td>
                             <a href='update.php?update_data=$_id' class='btn btn-dark'>UPDATE</a>
                             <a href='view.php?delete_data=$_id' class='btn btn-danger'>DELETE</a>
