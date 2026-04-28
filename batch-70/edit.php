@@ -7,21 +7,23 @@ if($_GET['update_data']){
     $data = mysqli_fetch_assoc($result);
 
     //database table field
-    $old_id = $data['id'];
+    
     $old_name = $data ['name'];
+    $old_contact = $data ['cntact'];
 }
 
 if(isset($_POST['btnupdate'])){
-        $name = $_POST['name'];
-        $contact = $_POST['contact'];
+    $name = $_POST['name'];
+    $contact = $_POST['cntact'];
 
-    $query="update morning_btch SET name='$name', contact='$contact' where id='$id'";
-    if(mysqli_query($database,$query)==true){
-        echo "data inserted!";
-        header("location.view.php".$_SERVER['PHP_SELF']);
+    $query="UPDATE morning_btch SET name='$name', cntact='$contact' WHERE id='$id'";
+    
+    if(mysqli_query($database,$query)){
+        echo "Data updated!";
+        header("Location: view.php");
         exit();
     }else{
-        "data not inserted!".mysql_error($database);
+        echo "Data not updated! " . mysqli_error($database);
     }
 }
 ?>
@@ -49,18 +51,18 @@ if(isset($_POST['btnupdate'])){
                         <form action="" method="post"> 
                             <div class="mb-3">
                                 <label class="form-label">Name:</label>
-                                <input type="text" name="name" class="form-control" value="<?php echo $old_id ?>" required>
+                                <input type="text" name="name" class="form-control" value="<?php echo $old_name?>" required>
                             </div>
                             
                             <div class="mb-3">
                                 <label class="form-label">Contact:</label>
-                                <input type="text" name="contact" class="form-control" value="<?php echo $old_name ?>" required> 
+                                <input type="text" name="cntact" class="form-control" value="<?php echo $old_contact ?>" required> 
                             </div>
                             
                             
                             <div class="card-footer text-center">
                                
-                                <button type="submit" name="submit" class="btn btn-primary w-100">Save Data</button>
+                                <button type="submit" name="btnupdate" class="btn btn-primary w-100">Save Data</button>
                             </div>
                         </form>
                     </div>
