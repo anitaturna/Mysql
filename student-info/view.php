@@ -65,7 +65,7 @@ if(isset($_GET['delete_data'])){
                             <td>$name</td><td>$email</td>
                             <td>$contact</td><td>$address</td>
                             <td>
-                            <a href='update.php?update_data=$_id' class='btn btn-dark'>UPDATE</a>
+                            <a href='update.php?update_data=$_id' class='btn btn-primary'>Edit</a>
                             <a href='view.php?delete_data=$_id' class='btn btn-danger'>DELETE</a>
                          </td>
                         </tr>";
@@ -74,7 +74,7 @@ if(isset($_GET['delete_data'])){
                 </tbody>
             </table>
             <a href="insert.php">
-                <button type="submit" class="btn btn-info">insert</button>
+                <button type="submit" class="btn btn-success">insert</button>
             </a>
         </div>
     </div>
