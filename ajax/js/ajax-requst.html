@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ajax-reqst</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <label for="name">Name</label> <br />
+    <input type="text" name="" id="name" /> <br />
+    <br />
+    <input type="submit" name="" id="btn" value="submit" />
+
+    <script>
+      $("#btn").click(function () {
+        var usern = $("#name").val()
+        $.ajax({
+          url: "store.php",
+          type: "POST",
+          data: {
+            name: usern
+          },
+          success: function (response) {
+            console.log(response)
+          },
+          error: {
+            function() {
+              console.log("error");
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

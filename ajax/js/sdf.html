@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <button id="btn">Load Data</button>
+    <div id="result">  </div>         
+    <script> 
+        // Complexity is 3 Everything is Cool!
+        $(document).ready(function(){
+            $('#btn').click(function(){
+                $.get("data.txt",function (data){
+                    $("#result").html(data);
+                })
+            })
+        })
+        
+    </script>    
+</body>
+</html>
